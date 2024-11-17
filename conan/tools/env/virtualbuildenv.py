@@ -11,6 +11,7 @@ class VirtualBuildEnv:
     def __init__(self, conanfile, auto_generate=False):
         self._buildenv = None
         self._conanfile = conanfile
+        self._auto_generate = auto_generate
         self.basename = "conanbuildenv"
         self.configuration = None
         self.arch = None
@@ -88,5 +89,5 @@ class VirtualBuildEnv:
         check_duplicated_generator(self, self._conanfile)
         build_env = self.environment()
         build_env.vars(self._conanfile, scope=scope).save_script(self._filename)
-        if not auto_generate and scope == "build":
+        if not self._auto_generate and scope == "build":
             self._conanfile.virtualbuildenv = False

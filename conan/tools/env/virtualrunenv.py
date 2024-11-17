@@ -36,6 +36,7 @@ class VirtualRunEnv:
         """
         self._runenv = None
         self._conanfile = conanfile
+        self._auto_generate = auto_generate
         self.basename = "conanrunenv"
         self.configuration = conanfile.settings.get_safe("build_type")
         if self.configuration:
@@ -96,5 +97,5 @@ class VirtualRunEnv:
         check_duplicated_generator(self, self._conanfile)
         run_env = self.environment()
         run_env.vars(self._conanfile, scope=scope).save_script(self._filename)
-        if not auto_generate and scope == "run":
+        if not self._auto_generate and scope == "run":
             self._conanfile.virtualbuildenv = False
