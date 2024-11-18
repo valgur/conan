@@ -98,4 +98,4 @@ class VirtualRunEnv:
         run_env = self.environment()
         run_env.vars(self._conanfile, scope=scope).save_script(self._filename)
         if not self._auto_generate and scope == "run":
-            self._conanfile.virtualbuildenv = False
+            self._conanfile.virtualrunenv = False
