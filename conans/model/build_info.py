@@ -554,7 +554,7 @@ class _Component:
             component_sanitized = re.escape(component_name)
             regex_static = re.compile(rf"(?:lib)?{lib_sanitized}(?:[._-].+)?\.(?:a|lib)")
             regex_shared = re.compile(rf"(?:lib)?{lib_sanitized}(?:[._-].+)?\.(?:so|dylib)")
-            regex_dll = re.compile(rf"(?:.+)?({lib_sanitized}|{component_sanitized})(?:.+)?\.dll")
+            regex_dll = re.compile(rf".*(?:{lib_sanitized}|{component_sanitized}).*\.dll")
             static_location = _find_matching(libdirs, regex_static)
             shared_location = _find_matching(libdirs, regex_shared)
             if static_location or not shared_location:
